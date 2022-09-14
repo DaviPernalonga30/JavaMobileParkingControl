@@ -122,7 +122,7 @@ public class DataBaseManagement{
                         sub.setContact(rs.getString("str_contact"));
                         sub.setManualSubscriptionDate(rs.getString("str_initdate"));
                         sub.setManualSubscriptionDeadLine(rs.getString("str_enddate"));
-                        sub.setLicense(rs.getString("str_license"));
+                        sub.setLicense(rs.getString("str_license").toUpperCase());
                         sub.setWeekDays(rs.getString("str_weekdays"));
                         sub.setIsMensalist(rs.getBoolean("bool_ismensalist"));
                         sub.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));

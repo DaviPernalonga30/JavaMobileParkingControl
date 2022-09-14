@@ -23,7 +23,7 @@ public class AdapterSubscriber extends RecyclerView.Adapter<AdapterSubscriber.Vi
         private final TextView end_date;
         private final TextView license;
         private final TextView contact;
-        private final CheckBox isMensalist;
+        private final TextView isMensalist;
 
 
 
@@ -35,7 +35,7 @@ public class AdapterSubscriber extends RecyclerView.Adapter<AdapterSubscriber.Vi
             this.end_date = (TextView) itemView.findViewById(R.id.mensalist_end_date);
             this.license = (TextView) itemView.findViewById(R.id.mensalist_license);
             this.contact = (TextView) itemView.findViewById(R.id.mensalist_contact);
-            this.isMensalist = (CheckBox) itemView.findViewById(R.id.mensalist_ismensalistcheck);
+            this.isMensalist = (TextView) itemView.findViewById(R.id.mensalist_ismensalist);
 
 
         }
@@ -55,7 +55,7 @@ public class AdapterSubscriber extends RecyclerView.Adapter<AdapterSubscriber.Vi
         public TextView getContact(){
             return this.contact;
         }
-        public CheckBox getIsMensalist(){
+        public TextView getIsMensalist(){
             return this.isMensalist;
         }
 
@@ -89,7 +89,13 @@ public class AdapterSubscriber extends RecyclerView.Adapter<AdapterSubscriber.Vi
         holder.getEnd_date().setText(localdata.get(position).getSubscriptionDeadLine());
         holder.getLicense().setText(localdata.get(position).getLicense());
         holder.getContact().setText(localdata.get(position).getContact());
-        holder.getIsMensalist().setSelected(localdata.get(position).getIsMensalist());
+        if(localdata.get(position).getIsMensalist() == true){
+            holder.getIsMensalist().setText("Mensalidade em dia");
+        }
+        else{
+            holder.getIsMensalist().setText("Mensalidade atrasada");
+        }
+
 
 
     }

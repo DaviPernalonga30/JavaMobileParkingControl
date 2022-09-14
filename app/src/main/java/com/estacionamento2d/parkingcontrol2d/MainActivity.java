@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(new AdapterSubscriber(a));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        
+
+
+
+
 
         System.out.println(a);
     }
