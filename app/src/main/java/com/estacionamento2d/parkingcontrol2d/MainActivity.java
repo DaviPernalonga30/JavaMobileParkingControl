@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.estacionamento2d.adapter.AdapterSubscriber;
+import com.estacionamento2d.adapter.AdapterVeicule;
 import com.estacionamento2d.javasrc.DataBaseManagement;
 import com.estacionamento2d.javasrc.Subscriber;
+import com.estacionamento2d.javasrc.VeiculeClass;
 
 
 import android.os.Bundle;
@@ -30,15 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         java.util.ArrayList<Subscriber> a = new ArrayList();
+        java.util.ArrayList<VeiculeClass> b;
         a = db.selectFromSubscriber();
-
-        String aux1 = a.get(0).getName();
-        String aux2 = a.get(0).getLicense();
+        b = db.selectFromVeicule();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.MainRecylerView);
         recyclerView.setAdapter(new AdapterSubscriber(a));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        
+
 
 
 

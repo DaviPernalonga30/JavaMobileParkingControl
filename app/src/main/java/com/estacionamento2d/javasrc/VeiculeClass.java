@@ -22,7 +22,7 @@ public class VeiculeClass implements Serializable{
 
 
     public void setLicense(String aux){
-        this.license = aux;
+        this.license = aux.toUpperCase();
     }
 
     public String getLicense(){

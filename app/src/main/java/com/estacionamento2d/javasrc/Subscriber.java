@@ -43,12 +43,11 @@ public class Subscriber implements Serializable {
         this.contact = aux;
     }
     public void setLicense(String aux){
-        this.license = aux;
+        this.license = aux.toUpperCase();
     }
     public void setIsMensalist(Boolean aux){
         this.isMensalist = aux;
     }
-
     public void setIsMotorBike(boolean aux){
         this.isMotorBike = aux;
     }

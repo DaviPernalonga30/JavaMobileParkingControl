@@ -122,7 +122,7 @@ public class DataBaseManagement{
                         sub.setContact(rs.getString("str_contact"));
                         sub.setManualSubscriptionDate(rs.getString("str_initdate"));
                         sub.setManualSubscriptionDeadLine(rs.getString("str_enddate"));
-                        sub.setLicense(rs.getString("str_license").toUpperCase());
+                        sub.setLicense(rs.getString("str_license"));
                         sub.setWeekDays(rs.getString("str_weekdays"));
                         sub.setIsMensalist(rs.getBoolean("bool_ismensalist"));
                         sub.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));
@@ -239,40 +239,58 @@ public class DataBaseManagement{
 
     public java.util.ArrayList selectFromVeicule(){
         java.util.ArrayList<VeiculeClass> veicList= new java.util.ArrayList();
-        String sqlcmd = "SELECT * FROM public.veicule WHERE str_date=?";
-        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        String auxDate = formatter.format(java.util.Calendar.getInstance().getTime());
-        //fazer a parte do calendário e do formatter.
+
+
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String sqlcmd = "SELECT * FROM public.veicule WHERE str_date=?";
+                java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                String auxDate = formatter.format(java.util.Calendar.getInstance().getTime());
+                //fazer a parte do calendário e do formatter.
 
 
 
-        this.setCon();
-        try(java.sql.PreparedStatement st = this.con.prepareStatement(sqlcmd)){
-            st.setString(1, auxDate);
 
-            java.sql.ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                VeiculeClass aux = new VeiculeClass();
-                aux.setLicense(rs.getString("str_license"));
-                aux.setManualTimeIn(rs.getString("str_timein"));
-                aux.setManualTimeOut(rs.getString("str_timeout"));
-                aux.setManualIsSubscriber(rs.getBoolean("bool_issubscriber"));
-                aux.setHasKey(rs.getBoolean("bool_haskey"));
-                aux.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));
-                aux.setManualDate(rs.getString("str_date"));
-                aux.setPostgresId(rs.getInt("id_veiculo"));
+                try(java.sql.PreparedStatement st = con.prepareStatement(sqlcmd)){
+                    st.setString(1, auxDate);
 
-                veicList.add(aux);
+                    java.sql.ResultSet rs = st.executeQuery();
+                    while(rs.next()){
+                        VeiculeClass aux = new VeiculeClass();
+                        aux.setLicense(rs.getString("str_license"));
+                        aux.setManualTimeIn(rs.getString("str_timein"));
+                        aux.setManualTimeOut(rs.getString("str_timeout"));
+                        aux.setManualIsSubscriber(rs.getBoolean("bool_issubscriber"));
+                        aux.setHasKey(rs.getBoolean("bool_haskey"));
+                        aux.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));
+                        aux.setManualDate(rs.getString("str_date"));
+                        aux.setPostgresId(rs.getInt("id_veiculo"));
+
+                        veicList.add(aux);
+
+                    }
+
+
+
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(DataBaseManagement.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
 
             }
-
-
-
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DataBaseManagement.class.getName()).log(Level.SEVERE, null, ex);
+        });
+        th.start();
+        try
+        {
+            th.join();
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
 
+        }
 
 
         return veicList;
