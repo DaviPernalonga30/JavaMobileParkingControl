@@ -1,50 +1,39 @@
 package com.estacionamento2d.parkingcontrol2d;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.navigation.NavController;
 
-import com.estacionamento2d.adapter.AdapterSubscriber;
-import com.estacionamento2d.adapter.AdapterVeicule;
-import com.estacionamento2d.javasrc.DataBaseManagement;
-import com.estacionamento2d.javasrc.Subscriber;
-import com.estacionamento2d.javasrc.VeiculeClass;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
+
+import com.estacionamento2d.parkingcontrol2d.databinding.ActivityMainBinding;
 
 
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
+
+
+    private NavHostFragment navHostFragment;
+    private NavController navController;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        setContentView(R.layout.activity_main);
+        initNavigation();
+    }
 
-        //button declarations.
-        Button button_viewVeicules = (Button) findViewById(R.id.button_viewVeicules);
-
-
-        //button setTexts.
-        button_viewVeicules.setText("Ver Veículos.");
-        button_viewVeicules.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
-
+    private void initNavigation(){
+        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerMain);
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
 
     }
 }
