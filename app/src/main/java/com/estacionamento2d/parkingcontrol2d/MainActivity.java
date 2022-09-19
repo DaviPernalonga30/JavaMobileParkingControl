@@ -27,24 +27,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBaseManagement db = new DataBaseManagement();
-
 
         setContentView(R.layout.activity_main);
-        java.util.ArrayList<Subscriber> a = new ArrayList();
-        java.util.ArrayList<VeiculeClass> b;
-        a = db.selectFromSubscriber();
-        b = db.selectFromVeicule();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.MainRecylerView);
-        recyclerView.setAdapter(new AdapterSubscriber(a));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //button declarations.
+        Button button_viewVeicules = (Button) findViewById(R.id.button_viewVeicules);
+
+
+        //button setTexts.
+        button_viewVeicules.setText("Ver Veículos.");
+        button_viewVeicules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 
 
-
-
-
-        System.out.println(a);
     }
 }
