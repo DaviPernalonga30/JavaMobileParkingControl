@@ -12,7 +12,10 @@ public class Calculations {
     private float dayReturn;
     private float valDevido;
 
-
+    public Calculations(){
+        java.util.ArrayList<VeiculeClass> veicList = new DataBaseManagement().selectFromVeicule();
+        calcEndDay(veicList);
+    }
 
     //Implementar mais somas aqui.
     //inclusive de mensalistas e avulsos.
@@ -64,7 +67,6 @@ public class Calculations {
         return this.valFractionHrMoto;
     }
     public float getDayReturn(){
-
         return this.dayReturn;
     }
 
