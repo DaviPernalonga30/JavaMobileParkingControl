@@ -9,7 +9,23 @@
         android:id="@+id/homePageFragment"
         android:name="com.estacionamento2d.parkingcontrol2d.homeFragment.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_addVeiculeFragment"
+            app:destination="@id/addVeiculeFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_addVeiculeFromSubscriberFragment"
+            app:destination="@id/addVeiculeFromSubscriberFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_editVeiculeFragment"
+            app:destination="@id/editVeiculeFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_removeVeiculeFragment"
+            app:destination="@id/removeVeiculeFragment" />
+    </fragment>
+
+
+
 
     <fragment
         android:id="@+id/subscriberRecyclerViewFragment"
@@ -19,8 +35,55 @@
 
     <fragment
         android:id="@+id/veiculeRecyclerViewFragment"
-        android:name="com.estacionamento2d.parkingcontrol2d.veiculefragment.VeiculeRecyclerViewFragment"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.VeiculeRecyclerViewFragment"
         android:label="fragment_veicule_recycler_view"
         tools:layout="@layout/fragment_veicule_recycler_view" />
+
+
+
+
+
+
+
+    <fragment
+        android:id="@+id/addVeiculeFragment"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.AddVeiculeFragment"
+        android:label="fragment_add_veicule"
+        tools:layout="@layout/fragment_add_veicule" >
+        <action
+            android:id="@+id/action_addVeiculeFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addVeiculeFromSubscriberFragment"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.AddVeiculeFromSubscriberFragment"
+        android:label="fragment_add_veicule_from_subscriber"
+        tools:layout="@layout/fragment_add_veicule_from_subscriber" >
+        <action
+            android:id="@+id/action_addVeiculeFromSubscriberFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editVeiculeFragment"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.EditVeiculeFragment"
+        android:label="fragment_edit_veicule"
+        tools:layout="@layout/fragment_edit_veicule" >
+        <action
+            android:id="@+id/action_editVeiculeFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/removeVeiculeFragment"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.RemoveVeiculeFragment"
+        android:label="fragment_remove_veicule"
+        tools:layout="@layout/fragment_remove_veicule" >
+        <action
+            android:id="@+id/action_removeVeiculeFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+
 
 </navigation>

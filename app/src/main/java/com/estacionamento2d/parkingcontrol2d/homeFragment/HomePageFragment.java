@@ -3,6 +3,7 @@ package com.estacionamento2d.parkingcontrol2d.homeFragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,8 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_addVeiculeFromSubscriberFragment);
+
             }
         });
 
@@ -72,6 +75,8 @@ public class HomePageFragment extends Fragment {
         buttonAddVeicule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_addVeiculeFragment);
 
             }
         });
@@ -81,6 +86,8 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_editVeiculeFragment);
+
             }
         });
 
@@ -88,6 +95,8 @@ public class HomePageFragment extends Fragment {
         buttonRemoveVeicule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_removeVeiculeFragment);
 
             }
         });

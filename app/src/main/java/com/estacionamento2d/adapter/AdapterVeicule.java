@@ -1,29 +1,57 @@
 package com.estacionamento2d.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.estacionamento2d.javasrc.VeiculeClass;
+import com.estacionamento2d.parkingcontrol2d.R;
 
 public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHolderVeicule> {
     private final java.util.ArrayList<VeiculeClass> localdata;
 
     public static class ViewHolderVeicule extends RecyclerView.ViewHolder{
+        private final TextView veicule_license;
+        private final TextView veicule_timein;
+        private final TextView veicule_timeout;
+        private final TextView veicule_mensalist_name;
+        private final TextView veicule_ismensalist;
+        private final TextView veicule_ismotorbike;
 
         public ViewHolderVeicule(@NonNull View itemView) {
             super(itemView);
 
+            this.veicule_license = (TextView) itemView.findViewById(R.id.veicule_license);
+            this.veicule_timein = (TextView) itemView.findViewById(R.id.veicule_timein);
+            this.veicule_timeout = (TextView) itemView.findViewById(R.id.veicule_timeout);
+            this.veicule_mensalist_name = (TextView) itemView.findViewById(R.id.veicule_mensalist_name);
+            this.veicule_ismensalist = (TextView) itemView.findViewById(R.id.veicule_ismensalist);
+            this.veicule_ismotorbike = (TextView) itemView.findViewById(R.id.veicule_ismotorbike);
 
-            //Colocar as variáveis aqui
-            //Variaveis essas de texto
+        }
 
 
-
-
-
+        public TextView getVeicule_license() {
+            return veicule_license;
+        }
+        public TextView getVeicule_timein() {
+            return veicule_timein;
+        }
+        public TextView getVeicule_timeout() {
+            return veicule_timeout;
+        }
+        public TextView getVeicule_mensalist_name() {
+            return veicule_mensalist_name;
+        }
+        public TextView getVeicule_ismensalist() {
+            return veicule_ismensalist;
+        }
+        public TextView getVeicule_ismotorbike() {
+            return veicule_ismotorbike;
         }
     }
 
@@ -35,14 +63,19 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
     @NonNull
     @Override
     public ViewHolderVeicule onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-        //inflater
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.veicule_item, parent, false);
+
+        return new AdapterVeicule.ViewHolderVeicule(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderVeicule holder, int position) {
-        //fazer a atribuição das variaveis com a localdata.
-
+        holder.getVeicule_license().setText(localdata.get(position).getLicense());
+        holder.getVeicule_timein().setText(localdata.get(position).getTimeIn());
+        holder.getVeicule_timeout().setText(localdata.get(position).getTimeOut());
+        holder.getVeicule_ismensalist().setText(localdata.get(position).getIsSubscriber().toString());
+        holder.getVeicule_ismotorbike().setText(String.valueOf(localdata.get(position).getIsMotorBike()));
+        holder.getVeicule_mensalist_name().setText("");
     }
 
     @Override
