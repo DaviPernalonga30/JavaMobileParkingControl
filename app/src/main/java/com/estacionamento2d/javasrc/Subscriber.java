@@ -43,7 +43,7 @@ public class Subscriber implements Serializable {
         this.contact = aux;
     }
     public void setLicense(String aux){
-        this.license = aux;
+        this.license = aux.toUpperCase();
     }
     public void setIsMensalist(Boolean aux){
         this.isMensalist = aux;
@@ -77,7 +77,7 @@ public class Subscriber implements Serializable {
         return this.contact;
     }
     public String getLicense(){
-        return this.license;
+        return this.license.toUpperCase();
     }
     public Boolean getIsMensalist(){
         return this.isMensalist;

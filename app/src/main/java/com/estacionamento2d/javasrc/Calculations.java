@@ -1,5 +1,7 @@
 package com.estacionamento2d.javasrc;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author davip
@@ -12,24 +14,22 @@ public class Calculations {
     private float dayReturn;
     private float valDevido;
 
-    public Calculations(){
-        java.util.ArrayList<VeiculeClass> veicList = new DataBaseManagement().selectFromVeicule();
-        calcEndDay(veicList);
-    }
+
 
     //Implementar mais somas aqui.
     //inclusive de mensalistas e avulsos.
     public void calcEndDay(java.util.ArrayList<VeiculeClass> veicList){
         float sum = 0;
 
-        for(int i = 0; i<veicList.size(); i=i+1){
+        for(int i = 0; i<veicList.size(); i=i+1) {
             VeiculeClass aux = veicList.get(i);
-            if(aux.getIsSubscriber() == false){
-                if(aux.getIsMotorBike() == true){
-                    sum = sum + this.valTurnMoto;
-                }
-                else{
-                    sum = sum + this.valTurnCar;
+            if(!aux.getTimeOut().equals("")){
+                if (aux.getIsSubscriber() == false) {
+                    if (aux.getIsMotorBike() == true) {
+                        sum = sum + this.valTurnMoto;
+                    } else {
+                        sum = sum + this.valTurnCar;
+                    }
                 }
             }
 
@@ -38,20 +38,6 @@ public class Calculations {
         this.setDayReturn(sum);
     }
 
-    public void calcEndMonth(java.util.ArrayList<VeiculeClass> veicList){
-
-
-
-    }
-
-    public void dateComparation(){
-
-
-
-
-
-
-    }
 
     //getters
     public float getValTurnCar(){
@@ -66,7 +52,8 @@ public class Calculations {
     public float getValFractionHrMoto(){
         return this.valFractionHrMoto;
     }
-    public float getDayReturn(){
+    public float getDayReturn(ArrayList<VeiculeClass> veic){
+        calcEndDay(veic);
         return this.dayReturn;
     }
 
@@ -91,7 +78,7 @@ public class Calculations {
     public void setValTurnCar(float aux){
         this.valTurnCar = aux;
     }
-    public void serValTurnMoto(float aux){
+    public void setValTurnMoto(float aux){
         this.valTurnMoto = aux;
     }
     public void setValFractionHrCar(float aux){

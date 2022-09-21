@@ -14,11 +14,13 @@ public class VeiculeClass implements Serializable{
     private String              license;
     private String              date;
     private String              timeIn;
-    private String              timeOut;
+    private String              timeOut = "";
     private Boolean             isSubscriber;
-    private Boolean             hasKey;
+    private Boolean             hasKey = false;
     private Boolean             isMotorBike = false;
     private int                 postgresId = 0;
+
+
 
 
     public void setLicense(String aux){
@@ -26,7 +28,7 @@ public class VeiculeClass implements Serializable{
     }
 
     public String getLicense(){
-        return this.license;
+        return this.license.toUpperCase();
     }
 
     public void setManualTimeIn(String aux){
@@ -60,7 +62,7 @@ public class VeiculeClass implements Serializable{
         this.isSubscriber = false;
         for(int i = 0; i<list.size(); i = i+1){
             list.get(i).setAutoIsMensalist();
-            if(list.get(i).getLicense().toLowerCase().equals(auxLicense.toLowerCase())){
+            if(list.get(i).getLicense().equals(auxLicense)){
                 if(list.get(i).getIsMensalist() == true){
                     this.isSubscriber = true;
                 }

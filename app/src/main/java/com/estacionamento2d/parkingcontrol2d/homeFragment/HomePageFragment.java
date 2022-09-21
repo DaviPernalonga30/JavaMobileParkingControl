@@ -38,11 +38,14 @@ public class HomePageFragment extends Fragment {
         TextView textViewTotalSubs = (TextView) view.findViewById(R.id.textView_total_subs);
         TextView textViewDailyMoney = (TextView) view.findViewById(R.id.textView_daily_money);
 
+        Calculations calcs = new Calculations();
+        calcs.setValTurnCar(7);
+        calcs.setValTurnMoto(3.5f);
 
         //TextView setText
         textViewTotalVeicule.setText("O total de veículos no estacionamento é: "+ String.valueOf(new DataBaseManagement().selectFromVeicule().size()));
         textViewTotalSubs.setText("O total de mensalistas do estacionemento é: "+ String.valueOf(new DataBaseManagement().selectFromSubscriber().size()));
-        textViewDailyMoney.setText("O Valor recebido no dia é: "+ String.valueOf(new Calculations().getDayReturn()));
+        textViewDailyMoney.setText("O Valor recebido no dia é: "+ String.valueOf(calcs.getDayReturn(new DataBaseManagement().selectFromVeicule())));
 
 
         //Buttons declarations

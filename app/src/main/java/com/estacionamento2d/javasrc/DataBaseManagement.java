@@ -2,7 +2,7 @@ package com.estacionamento2d.javasrc;
 
 
 
-import android.os.AsyncTask;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 //Essa questão do Extends Async pode ser a salvação, mas ainda nao entendo
     //pq ta falando que o connect n da certo.
 public class DataBaseManagement{
-    final private String url= "jdbc:postgresql://192.168.0.10:5050/2D-Estacionamento";
+    final private String url= "jdbc:postgresql://192.168.0.17:5050/2D-Estacionamento";
     final private String user = "postgres";
-    final private String password = "postgresql";
+    final private String password = "postgres";
     protected Connection con;
 
 
@@ -265,10 +265,6 @@ public class DataBaseManagement{
                 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");
                 String auxDate = formatter.format(java.util.Calendar.getInstance().getTime());
                 //fazer a parte do calendário e do formatter.
-
-
-
-
                 try(java.sql.PreparedStatement st = con.prepareStatement(sqlcmd)){
                     st.setString(1, auxDate);
 
@@ -283,14 +279,8 @@ public class DataBaseManagement{
                         aux.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));
                         aux.setManualDate(rs.getString("str_date"));
                         aux.setPostgresId(rs.getInt("id_veiculo"));
-
                         veicList.add(aux);
-
                     }
-
-
-
-
                 } catch (SQLException ex) {
                     Logger.getLogger(DataBaseManagement.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -321,10 +311,7 @@ public class DataBaseManagement{
                 String sqlcmd = "UPDATE public.veicule "
                         + "SET str_license = ?, str_timein = ?, str_timeout = ?, bool_issubscriber = ?, bool_haskey = ?, bool_ismotorbike = ? "
                         + "WHERE id_veiculo = ?";
-
-
                 String query = "SELECT id_veiculo, str_license FROM public.veicule WHERE str_license=? and str_date=?";
-
 
                 if(veicNew.getPostgresId() == 0){
                     try(java.sql.PreparedStatement st = con.prepareStatement(query)){
@@ -343,8 +330,6 @@ public class DataBaseManagement{
                     }
                 }
                 try(java.sql.PreparedStatement st = con.prepareStatement(sqlcmd)){
-                    //System.out.println(veicOld.getLicense());
-                    //System.out.println(veicNew.getLicense());
                     st.setString(1, veicNew.getLicense());
                     st.setString(2, veicNew.getTimeIn());
                     st.setString(3, veicNew.getTimeOut());
@@ -352,16 +337,10 @@ public class DataBaseManagement{
                     st.setBoolean(5, veicNew.getHasKey());
                     st.setBoolean(6, veicNew.getIsMotorBike());
                     st.setInt(7, veicNew.getPostgresId());
-
-
                     st.executeUpdate();
-
-
-
                 } catch (SQLException ex) {
                     Logger.getLogger(DataBaseManagement.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
         });
         th.run();
@@ -375,11 +354,6 @@ public class DataBaseManagement{
 
         }
     }
-
-
-
-
-
 
 }
 

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.estacionamento2d.javasrc.DataBaseManagement;
+import com.estacionamento2d.javasrc.Subscriber;
 import com.estacionamento2d.javasrc.VeiculeClass;
 import com.estacionamento2d.parkingcontrol2d.R;
 
@@ -21,6 +23,7 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         private final TextView veicule_mensalist_name;
         private final TextView veicule_ismensalist;
         private final TextView veicule_ismotorbike;
+        private final TextView veicule_haskey;
 
         public ViewHolderVeicule(@NonNull View itemView) {
             super(itemView);
@@ -31,6 +34,7 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
             this.veicule_mensalist_name = (TextView) itemView.findViewById(R.id.veicule_mensalist_name);
             this.veicule_ismensalist = (TextView) itemView.findViewById(R.id.veicule_ismensalist);
             this.veicule_ismotorbike = (TextView) itemView.findViewById(R.id.veicule_ismotorbike);
+            this.veicule_haskey = (TextView) itemView.findViewById(R.id.veicule_haskey);
 
         }
 
@@ -53,6 +57,9 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         public TextView getVeicule_ismotorbike() {
             return veicule_ismotorbike;
         }
+        public TextView getVeicule_haskey(){
+            return veicule_haskey;
+        }
     }
 
     public AdapterVeicule(java.util.ArrayList veicule){
@@ -73,8 +80,10 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         holder.getVeicule_license().setText(localdata.get(position).getLicense());
         holder.getVeicule_timein().setText(localdata.get(position).getTimeIn());
         holder.getVeicule_timeout().setText(localdata.get(position).getTimeOut());
-        holder.getVeicule_ismensalist().setText(localdata.get(position).getIsSubscriber().toString());
-        holder.getVeicule_ismotorbike().setText(String.valueOf(localdata.get(position).getIsMotorBike()));
+        holder.getVeicule_ismensalist().setText(String.valueOf("Mensalista: "+localdata.get(position).getIsSubscriber()));
+        holder.getVeicule_ismotorbike().setText(String.valueOf("Moto: "+localdata.get(position).getIsMotorBike()));
+        holder.getVeicule_haskey().setText(String.valueOf("Chave: "+localdata.get(position).getHasKey()));
+
         holder.getVeicule_mensalist_name().setText("");
     }
 
