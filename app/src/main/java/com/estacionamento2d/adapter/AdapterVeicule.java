@@ -1,5 +1,6 @@
 package com.estacionamento2d.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,11 +81,47 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         holder.getVeicule_license().setText(localdata.get(position).getLicense());
         holder.getVeicule_timein().setText(localdata.get(position).getTimeIn());
         holder.getVeicule_timeout().setText(localdata.get(position).getTimeOut());
-        holder.getVeicule_ismensalist().setText(String.valueOf("Mensalista: "+localdata.get(position).getIsSubscriber()));
-        holder.getVeicule_ismotorbike().setText(String.valueOf("Moto: "+localdata.get(position).getIsMotorBike()));
-        holder.getVeicule_haskey().setText(String.valueOf("Chave: "+localdata.get(position).getHasKey()));
-
         holder.getVeicule_mensalist_name().setText("");
+        if(localdata.get(position).getIsSubscriber() == false){
+            holder.getVeicule_ismensalist().setText(String.valueOf("Mensalista: Não"));
+            holder.getVeicule_ismensalist().setTextColor(Color.RED);
+        }
+        else{
+            holder.getVeicule_ismensalist().setText(String.valueOf("Mensalista: Sim"));
+            holder.getVeicule_ismensalist().setTextColor(Color.GREEN);
+            int i = 0;
+            java.util.ArrayList<Subscriber> subList = new DataBaseManagement().selectFromSubscriber();
+            while(!subList.get(i).getLicense().equals(localdata.get(position).getLicense())){
+                i = i + 1;
+            }
+            String aux = subList.get(i).getName();
+            String Arr[] = aux.split(" ");
+            holder.getVeicule_mensalist_name().setText(Arr[0]);
+        }
+
+        if(localdata.get(position).getHasKey() == false){
+            holder.getVeicule_haskey().setText(String.valueOf("Chave: Não"));
+            holder.getVeicule_haskey().setTextColor(Color.WHITE);
+
+        }
+        else{
+            holder.getVeicule_haskey().setText(String.valueOf("Chave: Sim"));
+            holder.getVeicule_haskey().setTextColor(Color.YELLOW);
+        }
+        if(localdata.get(position).getIsMotorBike() == false){
+            holder.getVeicule_ismotorbike().setText(String.valueOf("Moto: Não"));
+            holder.getVeicule_ismotorbike().setTextColor(Color.WHITE);
+
+        }
+        else{
+            holder.getVeicule_ismotorbike().setText(String.valueOf("Moto: Sim"));
+            holder.getVeicule_ismotorbike().setTextColor(Color.YELLOW);
+
+        }
+
+
+
+
     }
 
     @Override

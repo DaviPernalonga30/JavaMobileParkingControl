@@ -40,7 +40,7 @@ public class HomePageFragment extends Fragment {
 
         Calculations calcs = new Calculations();
         calcs.setValTurnCar(7);
-        calcs.setValTurnMoto(3.5f);
+        calcs.setValTurnMoto(3);
 
         //TextView setText
         textViewTotalVeicule.setText("O total de veículos no estacionamento é: "+ String.valueOf(new DataBaseManagement().selectFromVeicule().size()));

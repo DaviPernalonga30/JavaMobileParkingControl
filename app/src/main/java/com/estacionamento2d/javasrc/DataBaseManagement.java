@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 //Essa questão do Extends Async pode ser a salvação, mas ainda nao entendo
     //pq ta falando que o connect n da certo.
 public class DataBaseManagement{
-    final private String url= "jdbc:postgresql://192.168.0.17:5050/2D-Estacionamento";
+    final private String url= "jdbc:postgresql://192.168.0.10:5050/2D-Estacionamento";
     final private String user = "postgres";
-    final private String password = "postgres";
+    final private String password = "postgresql";
     protected Connection con;
 
 
@@ -264,6 +264,7 @@ public class DataBaseManagement{
                 String sqlcmd = "SELECT * FROM public.veicule WHERE str_date=?";
                 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");
                 String auxDate = formatter.format(java.util.Calendar.getInstance().getTime());
+                //auxDate = "21/09/2022";
                 //fazer a parte do calendário e do formatter.
                 try(java.sql.PreparedStatement st = con.prepareStatement(sqlcmd)){
                     st.setString(1, auxDate);
