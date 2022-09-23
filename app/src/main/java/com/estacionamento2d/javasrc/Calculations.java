@@ -23,15 +23,19 @@ public class Calculations {
 
         for(int i = 0; i<veicList.size(); i=i+1) {
             VeiculeClass aux = veicList.get(i);
-            if(!aux.getTimeOut().equals("")){
-                if (aux.getIsSubscriber() == false) {
-                    if (aux.getIsMotorBike() == true) {
-                        sum = sum + this.valTurnMoto;
-                    } else {
-                        sum = sum + this.valTurnCar;
+            if(!aux.getTimeIn().equals("--")){
+                if(!aux.getTimeOut().equals("")){
+                    if (aux.getIsSubscriber() == false) {
+                        if (aux.getIsMotorBike() == true) {
+                            sum = sum + this.valTurnMoto;
+                        } else {
+                            sum = sum + this.valTurnCar;
+                        }
                     }
                 }
+
             }
+
 
         }
         //criar getters e setters.

@@ -93,4 +93,18 @@
         android:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/veicule_ismotorbike"
         app:layout_constraintTop_toBottomOf="@+id/veicule_mensalist_name" />
+
+    <ImageView
+        android:id="@+id/veicule_item_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/veicule_haskey"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/veicule_timeout"
+        app:layout_constraintTop_toBottomOf="@+id/veicule_mensalist_name"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_directions_car_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

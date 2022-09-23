@@ -97,6 +97,7 @@ public class EditVeiculeFragment extends Fragment {
         CheckBox checkbox_edit_haskey = (CheckBox) view.findViewById(R.id.checkbox_edit_haskey);
         CheckBox checkbox_edit_ismotorbike = (CheckBox) view.findViewById(R.id.checkbox_edit_ismotorbike);
         CheckBox checkbox_edit_ismensalist =  (CheckBox) view.findViewById(R.id.checkbox_edit_ismensalist);
+        CheckBox checkbox_edit_haspaidearly = (CheckBox) view.findViewById(R.id.checkbox_edit_haspaidearly);
         Button button_edit_confirm = (Button) view.findViewById(R.id.button_edit_confirm);
         Button button_edit_cancel = (Button) view.findViewById(R.id.button_edit_cancel);
 
@@ -142,10 +143,18 @@ public class EditVeiculeFragment extends Fragment {
                 else{
                     auxVeiculeNew.setIsMotorBike(false);
                 }
+                if(checkbox_edit_haspaidearly.isChecked()){
+                    auxVeiculeNew.setHasPaidEarly(true);
+                }
+                else{
+                    auxVeiculeNew.setHasPaidEarly(false);
+                }
 
                 updateAuxiliar(auxVeiculeOld, auxVeiculeNew);
 
                 Navigation.findNavController(view).navigate(R.id.action_editVeiculeFragment_to_homePageFragment);
+
+
 
             }
         });

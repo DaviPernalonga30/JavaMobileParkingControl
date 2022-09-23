@@ -218,8 +218,9 @@ public class DataBaseManagement{
             @Override
             public void run() {
                 String sqlcmd = "INSERT INTO public.veicule"
-                        + "(str_license, str_timein, str_timeout, bool_issubscriber, bool_haskey, bool_ismotorbike, str_date) "
-                        + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+                        + "(str_license, str_timein, str_timeout, bool_issubscriber, bool_haskey, bool_ismotorbike, str_date, " +
+                        "bool_haspaidearly) "
+                        + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
 
                 try (java.sql.PreparedStatement st = con.prepareStatement(sqlcmd)) {
@@ -230,10 +231,11 @@ public class DataBaseManagement{
                     st.setBoolean(5, veic.getHasKey());
                     st.setBoolean(6, veic.getIsMotorBike());
                     st.setString(7, veic.getDate());
+                    st.setBoolean(8, veic.getHasPaidEarly());
 
                     st.executeUpdate();
 
-                    //System.out.println("deu certo: " + sqlcmd);
+                    System.out.println("deu certo: " + sqlcmd);
 
 
                 } catch (SQLException ex) {
@@ -280,6 +282,7 @@ public class DataBaseManagement{
                         aux.setIsMotorBike(rs.getBoolean("bool_ismotorbike"));
                         aux.setManualDate(rs.getString("str_date"));
                         aux.setPostgresId(rs.getInt("id_veiculo"));
+                        aux.setHasPaidEarly(rs.getBoolean("bool_haspaidearly"));
                         veicList.add(aux);
                     }
                 } catch (SQLException ex) {
@@ -310,7 +313,7 @@ public class DataBaseManagement{
             @Override
             public void run() {
                 String sqlcmd = "UPDATE public.veicule "
-                        + "SET str_license = ?, str_timein = ?, str_timeout = ?, bool_issubscriber = ?, bool_haskey = ?, bool_ismotorbike = ? "
+                        + "SET str_license = ?, str_timein = ?, str_timeout = ?, bool_issubscriber = ?, bool_haskey = ?, bool_ismotorbike = ?, bool_haspaidearly = ? "
                         + "WHERE id_veiculo = ?";
                 String query = "SELECT id_veiculo, str_license FROM public.veicule WHERE str_license=? and str_date=?";
 
@@ -337,7 +340,8 @@ public class DataBaseManagement{
                     st.setBoolean(4, veicNew.getIsSubscriber());
                     st.setBoolean(5, veicNew.getHasKey());
                     st.setBoolean(6, veicNew.getIsMotorBike());
-                    st.setInt(7, veicNew.getPostgresId());
+                    st.setBoolean(7, veicNew.getHasPaidEarly());
+                    st.setInt(8, veicNew.getPostgresId());
                     st.executeUpdate();
                 } catch (SQLException ex) {
                     Logger.getLogger(DataBaseManagement.class.getName()).log(Level.SEVERE, null, ex);

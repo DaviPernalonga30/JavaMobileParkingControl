@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         private final TextView veicule_ismensalist;
         private final TextView veicule_ismotorbike;
         private final TextView veicule_haskey;
+        private final ImageView veicule_item_image_view;
+
 
         public ViewHolderVeicule(@NonNull View itemView) {
             super(itemView);
@@ -36,6 +39,7 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
             this.veicule_ismensalist = (TextView) itemView.findViewById(R.id.veicule_ismensalist);
             this.veicule_ismotorbike = (TextView) itemView.findViewById(R.id.veicule_ismotorbike);
             this.veicule_haskey = (TextView) itemView.findViewById(R.id.veicule_haskey);
+            this.veicule_item_image_view = (ImageView) itemView.findViewById(R.id.veicule_item_image_view);
 
         }
 
@@ -60,6 +64,9 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
         }
         public TextView getVeicule_haskey(){
             return veicule_haskey;
+        }
+        public ImageView getVeicule_item_image_view(){
+            return veicule_item_image_view;
         }
     }
 
@@ -93,10 +100,15 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
             java.util.ArrayList<Subscriber> subList = new DataBaseManagement().selectFromSubscriber();
             while(!subList.get(i).getLicense().equals(localdata.get(position).getLicense())){
                 i = i + 1;
+                if(i >= subList.size()){
+                    break;
+                }
             }
-            String aux = subList.get(i).getName();
-            String Arr[] = aux.split(" ");
-            holder.getVeicule_mensalist_name().setText(Arr[0]);
+            if(i<subList.size()) {
+                String aux = subList.get(i).getName();
+                String Arr[] = aux.split(" ");
+                holder.getVeicule_mensalist_name().setText(Arr[0]);
+            }
         }
 
         if(localdata.get(position).getHasKey() == false){
@@ -117,6 +129,12 @@ public class AdapterVeicule extends RecyclerView.Adapter<AdapterVeicule.ViewHold
             holder.getVeicule_ismotorbike().setText(String.valueOf("Moto: Sim"));
             holder.getVeicule_ismotorbike().setTextColor(Color.YELLOW);
 
+        }
+        if(localdata.get(position).getHasPaidEarly() == true){
+            holder.getVeicule_item_image_view().setImageResource(R.drawable.ic_baseline_monetization_on_24);
+        }
+        else{
+            holder.getVeicule_item_image_view().setImageResource(0);
         }
 
 

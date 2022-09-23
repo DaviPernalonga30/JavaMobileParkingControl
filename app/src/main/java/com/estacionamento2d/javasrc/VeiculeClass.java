@@ -19,6 +19,7 @@ public class VeiculeClass implements Serializable{
     private Boolean             hasKey = false;
     private Boolean             isMotorBike = false;
     private int                 postgresId = 0;
+    private Boolean             hasPaidEarly;
 
 
 
@@ -116,6 +117,10 @@ public class VeiculeClass implements Serializable{
         return this.postgresId;
     }
 
-
-
+    public void setHasPaidEarly(Boolean hasPaid) {
+        this.hasPaidEarly = hasPaid;
+    }
+    public Boolean getHasPaidEarly(){
+        return this.hasPaidEarly;
+    }
 }

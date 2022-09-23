@@ -75,6 +75,7 @@ public class AddVeiculeFragment extends Fragment {
 
 
                 veicule.setIsSubscriber(new DataBaseManagement().selectFromSubscriber());
+                veicule.setHasPaidEarly(false);
                 new DataBaseManagement().insertIntoVeicule(veicule);
 
 
