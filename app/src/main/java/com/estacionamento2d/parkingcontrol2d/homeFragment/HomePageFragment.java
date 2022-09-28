@@ -53,7 +53,8 @@ public class HomePageFragment extends Fragment {
         Button buttonAddVeicule = (Button) view.findViewById(R.id.button_add_veicule);
         Button buttonEditVeicule = (Button) view.findViewById(R.id.button_edit_veicule);
         Button buttonRemoveVeicule = (Button) view.findViewById(R.id.button_remove_veicule);
-
+        Button button_view_inside_subscribers = (Button) view.findViewById(R.id.button_view_inside_subscribers);
+        Button button_view_inside_veicule_not_subscribers = (Button) view.findViewById(R.id.button_view_inside_veicule_not_subscribers);
 
 
         //buttons setText
@@ -61,6 +62,9 @@ public class HomePageFragment extends Fragment {
         buttonAddVeicule.setText("Adicionar veículo.");
         buttonEditVeicule.setText("Editar Veículo.");
         buttonRemoveVeicule.setText("Remover Veículo.");
+        button_view_inside_subscribers.setText("Mensalistas Est.");
+        button_view_inside_veicule_not_subscribers.setText("Avulsos Est.");
+
 
 
 
@@ -104,6 +108,21 @@ public class HomePageFragment extends Fragment {
             }
         });
 
+        button_view_inside_subscribers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_viewInsideSubscribers);
+            }
+        });
+
+        button_view_inside_veicule_not_subscribers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_viewInsideVeiculeNotSubscribers);
+            }
+        });
 
 
         return view;

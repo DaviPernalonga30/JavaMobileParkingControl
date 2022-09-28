@@ -17,8 +17,6 @@ import java.util.logging.Logger;
  * @author davip
  */
 
-//Essa questão do Extends Async pode ser a salvação, mas ainda nao entendo
-    //pq ta falando que o connect n da certo.
 public class DataBaseManagement{
     final private String url= "jdbc:postgresql://192.168.0.10:5050/2D-Estacionamento";
     final private String user = "postgres";

@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_homePageFragment_to_removeVeiculeFragment"
             app:destination="@id/removeVeiculeFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_viewInsideSubscribers"
+            app:destination="@id/viewInsideSubscribers" />
+        <action
+            android:id="@+id/action_homePageFragment_to_viewInsideVeiculeNotSubscribers"
+            app:destination="@id/viewInsideVeiculeNotSubscribers" />
     </fragment>
 
 
@@ -82,6 +88,24 @@
         tools:layout="@layout/fragment_remove_veicule" >
         <action
             android:id="@+id/action_removeVeiculeFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewInsideSubscribers"
+        android:name="com.estacionamento2d.parkingcontrol2d.subscriberFragment.ViewInsideSubscribers"
+        android:label="fragment_view_inside_subscribers"
+        tools:layout="@layout/fragment_view_inside_subscribers" >
+        <action
+            android:id="@+id/action_viewInsideSubscribers_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewInsideVeiculeNotSubscribers"
+        android:name="com.estacionamento2d.parkingcontrol2d.veiculeFragment.ViewInsideVeiculeNotSubscribers"
+        android:label="fragment_view_inside_veicule_not_subscribers"
+        tools:layout="@layout/fragment_view_inside_veicule_not_subscribers" >
+        <action
+            android:id="@+id/action_viewInsideVeiculeNotSubscribers_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 
