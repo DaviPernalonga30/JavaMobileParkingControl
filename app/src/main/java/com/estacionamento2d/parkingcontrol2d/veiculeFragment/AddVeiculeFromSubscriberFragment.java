@@ -112,6 +112,7 @@ public class AddVeiculeFromSubscriberFragment extends Fragment {
                     if(subscribers.get(i).getName().toLowerCase(Locale.ROOT).equals(str.toLowerCase(Locale.ROOT))){
                         veic.setLicense(subscribers.get(i).getLicense());
                         veic.setManualIsSubscriber(true);
+                        break;
 
                     }
 
@@ -123,6 +124,10 @@ public class AddVeiculeFromSubscriberFragment extends Fragment {
                 else{
                     veic.setAutoTimeIn();
                 }
+                veic.setIsMotorBike(false);
+                veic.setHasKey(false);
+                veic.setHasPaidEarly(false);
+                veic.setDate();
 
                 db.insertIntoVeicule(veic);
 
