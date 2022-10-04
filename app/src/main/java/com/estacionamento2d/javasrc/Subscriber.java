@@ -43,7 +43,7 @@ public class Subscriber implements Serializable {
         this.contact = aux;
     }
     public void setLicense(String aux){
-        this.license = aux.toUpperCase();
+        this.license = aux;
     }
     public void setIsMensalist(Boolean aux){
         this.isMensalist = aux;
@@ -77,7 +77,7 @@ public class Subscriber implements Serializable {
         return this.contact;
     }
     public String getLicense(){
-        return this.license.toUpperCase();
+        return this.license;
     }
     public Boolean getIsMensalist(){
         return this.isMensalist;
@@ -151,7 +151,13 @@ public class Subscriber implements Serializable {
                 this.setIsMensalist(true);
                 return;
 
-            }else{
+            }
+            else if(dateaux2 > auxint2){
+                this.setIsMensalist(false);
+                return;
+            }
+
+            else{
                 if(dateaux1 <= auxint1){
                     this.setIsMensalist(true);
                     return;
